@@ -55,7 +55,7 @@ export interface SkillCategory {
 
 // 세 줄로 끝나도록 유지한다. 항목을 늘리기보다 대표적인 것만 남긴다.
 export const skills: SkillCategory[] = [
-  { label: "언어", items: ["Python", "R", "SQL"] },
+  { label: "언어", items: ["Python", "R"] },
   {
     label: "딥러닝 · 비전",
     items: ["PyTorch", "YOLO", "HRNet", "Segmentation", "GAN · Diffusion"],
