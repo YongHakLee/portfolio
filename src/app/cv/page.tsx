@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import PrintButton from "@/components/PrintButton";
 import { profile } from "@/data/profile";
 import { publications, patents, rndProjects } from "@/data/research";
 import {
@@ -41,23 +40,16 @@ export default function CvPage() {
   return (
     <div className="pt-14 pb-6 font-serif">
       <header className="print-avoid-break">
-        <div className="flex items-start justify-between gap-6">
-          <div>
-            <h1 className="text-[30px] font-semibold tracking-tight">{profile.nameEn}</h1>
-            <p className="mt-2 text-[13.5px] text-muted">
-              Email:{" "}
-              <a
-                href={`mailto:${profile.email}`}
-                className="underline decoration-hairline underline-offset-4"
-              >
-                {profile.email}
-              </a>
-            </p>
-          </div>
-          <div className="font-sans">
-            <PrintButton label="Print · Save as PDF" />
-          </div>
-        </div>
+        <h1 className="text-[30px] font-semibold tracking-tight">{profile.nameEn}</h1>
+        <p className="mt-2 text-[13.5px] text-muted">
+          Email:{" "}
+          <a
+            href={`mailto:${profile.email}`}
+            className="underline decoration-hairline underline-offset-4"
+          >
+            {profile.email}
+          </a>
+        </p>
       </header>
 
       <CvSection title="Education">

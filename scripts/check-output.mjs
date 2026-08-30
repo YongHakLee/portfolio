@@ -98,7 +98,17 @@ const checks = [
       cv.includes("Technical Skills") &&
       cv.includes("References"),
   ],
-  ["CV 인쇄 버튼", cv.includes("Print")],
+  // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
+  ["인쇄 버튼 없음", !/<button/i.test(all)],
+  ["연락 CTA 없음", !pageOnly.includes("함께 일할 이야기가 있다면")],
+  // 저자 기여를 과장하지 않는 표기.
+  // HTML에서 &는 &amp;로 이스케이프되므로 정규식으로 양쪽을 다 받는다.
+  [
+    "'참여' 표기",
+    work.includes("논문 참여") &&
+      /국가 R&(amp;)?D 참여/.test(work) &&
+      resume.includes("대표 참여 논문"),
+  ],
   ...FORBIDDEN.map((word) => [`잔재 미포함: ${word}`, !pageOnly.includes(word)]),
 ];
 

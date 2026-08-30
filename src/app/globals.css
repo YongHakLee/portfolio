@@ -25,11 +25,12 @@ body {
   letter-spacing: 0.01em;
 }
 
-/* 이력서 PDF 저장(브라우저 인쇄) 대응 */
+/* PDF 저장 = 브라우저 인쇄(Ctrl/⌘ + P). 별도 버튼 없이 이 규칙만으로 모양을 잡는다.
+   이 블록은 레이어 밖에 있어 Tailwind 유틸리티(@layer utilities)보다 우선한다. */
 @media print {
   @page {
     size: A4 portrait;
-    margin: 12mm;
+    margin: 14mm 12mm;
   }
 
   body {
@@ -42,19 +43,50 @@ body {
     display: none !important;
   }
 
-  .print-avoid-break {
+  /* 페이지 넘김은 '항목' 단위로만 일어나게 한다.
+     섹션 전체를 묶으면 긴 블록이 통째로 다음 장으로 밀려 앞 쪽에 큰 여백이 생긴다. */
+  .print-avoid-break,
+  li,
+  img {
     break-inside: avoid;
   }
 
-  /* 제목만 페이지 끝에 홀로 남거나 이미지가 두 쪽에 걸치는 것을 막는다 */
+  /* 제목만 페이지 끝에 홀로 남는 것을 막는다 */
   h1,
   h2,
   h3,
   h4 {
     break-after: avoid;
+    break-inside: avoid;
   }
 
-  img {
-    break-inside: avoid;
+  /* 문단이 첫 줄·끝 줄 한 줄만 떼어져 넘어가지 않게 */
+  p,
+  li {
+    orphans: 3;
+    widows: 3;
+  }
+
+  /* 프로젝트 이미지는 원본 비율 그대로면 한 행이 A4 한 쪽을 거의 채워,
+     남은 자리에 못 들어가고 통째로 다음 장으로 밀린다(앞 쪽에 큰 여백이 생김).
+     인쇄에서만 높이를 묶어 본문과 같은 쪽에 들어가게 한다. */
+  main article img {
+    max-height: 88mm;
+    width: auto;
+    max-width: 100%;
+  }
+
+  /* 화면용으로 넉넉히 잡은 세로 여백은 인쇄에서 줄인다(빈 공간·페이지 수 감소) */
+  main section {
+    margin-top: 9mm;
+  }
+
+  main article + article {
+    margin-top: 8mm;
+  }
+
+  /* 화면에서만 의미 있는 스크롤 여유 */
+  .scroll-mt-8 {
+    scroll-margin-top: 0;
   }
 }

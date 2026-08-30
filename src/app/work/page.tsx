@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
-import PrintButton from "@/components/PrintButton";
 import { asset } from "@/lib/paths";
-import { profile } from "@/data/profile";
 import { certificates } from "@/data/career";
 import { lectureSeries, videoUrl } from "@/data/lectures";
 import { projects, type Project, type ProjectPoint } from "@/data/projects";
@@ -35,7 +32,7 @@ function Authors({ text }: { text: string }) {
 /* 문제 상황 / 해결과 성과 / 수행 내용 — 리드 문구 + 설명 목록 (공통 모양) */
 function Points({ title, items }: { title: string; items: ProjectPoint[] }) {
   return (
-    <div>
+    <div className="print-avoid-break">
       <h4 className="text-[12px] font-bold tracking-[0.12em] text-faint">{title}</h4>
       <ul className="mt-2 space-y-2 text-[13.5px] leading-[1.65]">
         {items.map((pt) => (
@@ -54,29 +51,32 @@ function Points({ title, items }: { title: string; items: ProjectPoint[] }) {
 function ProjectCard({ p }: { p: Project }) {
   return (
     <article data-project={p.no}>
-      <div className="flex items-baseline gap-4">
-        <span className="text-[13px] font-bold text-accent tabular-nums">{p.no}</span>
-        <div className="flex-1">
-          <h3 className="text-[17px] font-extrabold leading-[1.4] tracking-tight">{p.title}</h3>
-          <p className="mt-1 text-[12.5px] text-faint tabular-nums">{p.period}</p>
+      {/* 제목·기간·역할·기술은 인쇄에서 갈라지지 않게 한 덩어리로 묶는다 */}
+      <div className="print-avoid-break">
+        <div className="flex items-baseline gap-4">
+          <span className="text-[13px] font-bold text-accent tabular-nums">{p.no}</span>
+          <div className="flex-1">
+            <h3 className="text-[17px] font-extrabold leading-[1.4] tracking-tight">{p.title}</h3>
+            <p className="mt-1 text-[12.5px] text-faint tabular-nums">{p.period}</p>
+          </div>
         </div>
-      </div>
 
-      <div className="mt-3 space-y-1 text-[13px] text-muted">
-        <p>
-          <span className="text-faint">역할 </span>
-          {p.role}
-        </p>
-        <p>
-          <span className="text-faint">기술 </span>
-          {p.tech.join(" · ")}
-        </p>
+        <div className="mt-3 space-y-1 text-[13px] text-muted">
+          <p>
+            <span className="text-faint">역할 </span>
+            {p.role}
+          </p>
+          <p>
+            <span className="text-faint">기술 </span>
+            {p.tech.join(" · ")}
+          </p>
+        </div>
       </div>
 
       <div className="mt-5 grid gap-8 sm:grid-cols-2">
         {p.works && <Points title="수행 내용" items={p.works} />}
         {p.results && (
-          <div>
+          <div className="print-avoid-break">
             <h4 className="text-[12px] font-bold tracking-[0.12em] text-faint">결과</h4>
             <ul className="mt-2 flex flex-wrap gap-2">
               {p.results.map((r) => (
@@ -92,7 +92,7 @@ function ProjectCard({ p }: { p: Project }) {
       </div>
 
       {p.images && (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 print-avoid-break">
           {p.images.map((img) => (
             <img
               key={img.src}
@@ -113,12 +113,9 @@ export default function WorkPage() {
     <div className="pt-14 pb-6">
       {/* 인트로 */}
       <header>
-        <div className="flex items-start justify-between gap-6">
-          <h1 className="text-[28px] font-extrabold leading-[1.3] tracking-[-0.02em]">
-            프로젝트와 연구
-          </h1>
-          <PrintButton />
-        </div>
+        <h1 className="text-[28px] font-extrabold leading-[1.3] tracking-[-0.02em]">
+          프로젝트와 연구
+        </h1>
         <p className="mt-4 max-w-xl text-[14.5px] leading-[1.75] text-muted">
           미세먼지 측정부터 모바일 LiDAR 3D 계측, 3D 역설계까지 — 문제를 정의하고 데이터를 모아
           모델을 만들어 검증한 뒤, 그 결과를 논문과 특허로 남겨온 기록입니다.
@@ -140,7 +137,7 @@ export default function WorkPage() {
         <SectionHeading no="02" title="연구 성과" />
 
         <h3 className="mt-6 text-[12px] font-bold tracking-[0.12em] text-faint">
-          논문 {publications.length}편
+          논문 참여 {publications.length}편
         </h3>
         <ul className="mt-2 border-t border-ink">
           {publications.map((pub) => (
@@ -186,7 +183,7 @@ export default function WorkPage() {
         </ul>
 
         <h3 className="mt-10 text-[12px] font-bold tracking-[0.12em] text-faint">
-          국가 R&D {rndProjects.length}건
+          국가 R&D 참여 {rndProjects.length}건
         </h3>
         <ul className="mt-2 border-t border-ink">
           {rndProjects.map((r) => (
@@ -201,9 +198,9 @@ export default function WorkPage() {
         </ul>
       </section>
 
-      {/* 03 자격증 · 수상 */}
+      {/* 03 자격증 */}
       <section className="mt-20 print-avoid-break">
-        <SectionHeading no="03" title="자격증 · 수상" />
+        <SectionHeading no="03" title="자격증" />
         <ul className="mt-4 space-y-2">
           {certificates.map((c) => (
             <li key={c.name} className="flex items-baseline gap-3 text-[13.5px]">
@@ -223,7 +220,7 @@ export default function WorkPage() {
         </p>
         <div className="mt-5 space-y-6">
           {lectureSeries.map((s) => (
-            <div key={s.id}>
+            <div key={s.id} className="print-avoid-break">
               <div className="flex items-baseline justify-between border-b border-hairline pb-1.5">
                 <h3 className="text-[14px] font-bold">
                   {s.title}
@@ -257,19 +254,6 @@ export default function WorkPage() {
         </div>
       </section>
 
-      {/* 마무리 */}
-      <div className="mt-16 border-t border-ink pt-6 text-center">
-        <p className="text-[15px] font-bold">함께 일할 이야기가 있다면</p>
-        <p className="mt-2 text-[13.5px]">
-          <a href={`mailto:${profile.email}`} className="font-semibold text-accent">
-            {profile.email}
-          </a>
-          <span className="mx-3 text-hairline">|</span>
-          <Link href="/resume" className="text-muted hover:text-ink">
-            이력서 보기 →
-          </Link>
-        </p>
-      </div>
     </div>
   );
 }

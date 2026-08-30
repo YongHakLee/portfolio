@@ -11,7 +11,7 @@ AI 엔지니어 · 응용통계학 박사. 컴퓨터 비전과 3D 계측을 다�
 | [포트폴리오](https://yonghaklee.github.io/portfolio/work) | 프로젝트 · 연구 성과 · 기타 활동 |
 | [CV](https://yonghaklee.github.io/portfolio/cv) | 영문 학술 CV (`cv/cv.pdf`와 같은 내용) |
 
-세 페이지 모두 우측 상단의 **인쇄 · PDF로 저장** 버튼(또는 `Ctrl/⌘ + P`)으로 PDF가 됩니다.
+세 페이지 모두 `Ctrl/⌘ + P` → **PDF로 저장**으로 인쇄용 레이아웃이 적용된 PDF가 됩니다.
 
 ## 기술 스택
 

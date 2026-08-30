@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import SectionHeading from "@/components/SectionHeading";
-import PrintButton from "@/components/PrintButton";
 import { asset } from "@/lib/paths";
 import { profile } from "@/data/profile";
 import { careers, educations, certificates, skills } from "@/data/career";
@@ -35,7 +34,7 @@ export default function ResumePage() {
             alt={`${profile.name} 프로필 사진`}
             className="w-24 h-24 object-cover"
           />
-          <div className="flex-1">
+          <div>
             <h1 className="text-[26px] font-extrabold tracking-[-0.02em]">{profile.name}</h1>
             <p className="mt-1 text-[14px] text-muted">{profile.role}</p>
             <p className="mt-0.5 text-[13px] text-faint">{profile.focus}</p>
@@ -48,7 +47,6 @@ export default function ResumePage() {
               </a>
             </p>
           </div>
-          <PrintButton />
         </div>
       </header>
 
@@ -137,7 +135,7 @@ export default function ResumePage() {
       <section className="mt-12">
         <SectionHeading no="06" title="연구 · 프로젝트" />
 
-        <h3 className="mt-5 text-[12px] font-bold tracking-[0.12em] text-faint">대표 논문</h3>
+        <h3 className="mt-5 text-[12px] font-bold tracking-[0.12em] text-faint">대표 참여 논문</h3>
         <div className="mt-3 space-y-3 border-t border-hairline pt-3">
           {featured.map((p) => (
             <div key={p.title} className="print-avoid-break">
@@ -148,7 +146,7 @@ export default function ResumePage() {
             </div>
           ))}
           <p className="text-[12.5px] text-faint">
-            외 논문 {publications.length - featured.length}편 —{" "}
+            외 참여 논문 {publications.length - featured.length}편 —{" "}
             <Link href="/work#research" className="no-print font-semibold text-accent">
               전체 목록은 포트폴리오에서 →
             </Link>
@@ -168,7 +166,7 @@ export default function ResumePage() {
         </div>
 
         <h3 className="mt-8 text-[12px] font-bold tracking-[0.12em] text-faint">
-          국가 R&D {rndProjects.length}건
+          국가 R&D 참여 {rndProjects.length}건
         </h3>
         <ul className="mt-3 space-y-1.5 border-t border-hairline pt-3">
           {rndProjects.map((r) => (
@@ -191,9 +189,9 @@ export default function ResumePage() {
         </ul>
       </section>
 
-      {/* 07 자격증 · 수상 */}
+      {/* 07 자격증 */}
       <section className="mt-12 print-avoid-break">
-        <SectionHeading no="07" title="자격증 · 수상" />
+        <SectionHeading no="07" title="자격증" />
         <ul className="mt-4 space-y-2">
           {certificates.map((c) => (
             <li key={c.name} className="flex items-baseline gap-3 text-[13.5px]">

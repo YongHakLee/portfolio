@@ -32,7 +32,8 @@ export const educations: EducationItem[] = [
     school: "건국대학교 일반대학원",
     period: "2022.03 – 2026.08",
     degree: "응용통계학과 박사",
-    thesis: "모바일 LiDAR와 딥러닝 통합을 통한 3D 생체 인식 및 자동화 정밀 측정 연구",
+    thesis:
+      "모바일 LiDAR와 딥러닝 통합을 통한 3D 생체 인식 및 자동화 정밀 측정 연구",
   },
   {
     school: "건국대학교 일반대학원",
@@ -61,7 +62,14 @@ export const skills: SkillCategory[] = [
   },
   {
     label: "3D · 인프라",
-    items: ["Mobile LiDAR", "Point Cloud", "Open3D", "OpenCV", "FastAPI", "Docker"],
+    items: [
+      "Mobile LiDAR",
+      "Point Cloud",
+      "Open3D",
+      "OpenCV",
+      "FastAPI",
+      "Docker",
+    ],
   },
 ];
 
@@ -72,7 +80,6 @@ export interface CertItem {
 }
 
 export const certificates: CertItem[] = [
-  { name: "AI 바우처 우수사례 선정 (공급기업 수행)", date: "2025.12", org: "정보통신산업진흥원" },
   { name: "SQLD", date: "2025.12", org: "한국데이터산업진흥원" },
   { name: "ADsP", date: "2025.11", org: "한국데이터산업진흥원" },
   { name: "한국사능력검정시험 1급", date: "2019.08", org: "국사편찬위원회" },
