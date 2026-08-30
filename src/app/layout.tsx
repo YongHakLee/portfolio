@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     template: "%s — 이용학",
   },
   description:
-    "데이터와 AI를 연구하고, 따라 할 수 있게 가르치는 이용학의 이력서와 포트폴리오",
+    "컴퓨터 비전과 3D 계측을 연구하는 AI 엔지니어 이용학의 이력서 · 포트폴리오 · CV",
 };
 
 export default function RootLayout({

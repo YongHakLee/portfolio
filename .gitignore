@@ -52,3 +52,7 @@ prompt.md
 # 원본 이미지 (웹용 사본은 public/images/ 에 커밋됨)
 /images/
 /projects/
+
+# 이력서·CV 원본 (사이트는 이 내용을 src/data/ 에 옮겨 담는다)
+/files
+/cv

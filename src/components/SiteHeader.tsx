@@ -14,6 +14,9 @@ export default function SiteHeader() {
           <Link href="/work" className="whitespace-nowrap hover:text-ink">
             포트폴리오
           </Link>
+          <Link href="/cv" className="whitespace-nowrap hover:text-ink">
+            CV
+          </Link>
         </nav>
       </div>
     </header>

@@ -19,14 +19,17 @@ async function readPage(name) {
 const index = await readPage("index");
 const resume = await readPage("resume");
 const work = await readPage("work");
-const all = index + resume + work;
+const cv = await readPage("cv");
+const all = index + resume + work + cv;
 
 const lectureThumbs = await readdir("out/images/lectures");
 
 // <script> 안에는 RSC 페이로드와 Turbopack이 만든 청크 경로·모듈 id가 들어있는데,
 // 여기엔 빌드 머신의 디렉터리 이름 같은 게 그대로 새어 들어간다.
-// 금지어 검사는 이걸 페이지 콘텐츠로 착각하면 안 되므로 <script> 블록을 지우고 본다.
-const pageOnly = all.replace(/<script[\s\S]*?<\/script>/gi, "");
+// 문자열 유무 검사는 이걸 페이지 콘텐츠로 착각하면 안 되므로 <script> 블록을 지우고 본다.
+const stripScripts = (html) => html.replace(/<script[\s\S]*?<\/script>/gi, "");
+const pageOnly = stripScripts(all);
+const resumeOnly = stripScripts(resume);
 
 // 2026-08 정리에서 지운 것들. 산출물에 다시 나타나면 정리가 되감긴 것이다.
 // (저장소 옛 이름 · 덱 라우트 · 시연 앱 · 덱에서만 쓰던 가상 상호명)
@@ -53,15 +56,27 @@ const checks = [
     youtubeLinkCount === 12,
     `실제 ${youtubeLinkCount}건, 기대 12건`,
   ],
-  ["논문 9편", publicationCount === 9, `실제 ${publicationCount}편, 기대 9편`],
+  ["논문 13편", publicationCount === 13, `실제 ${publicationCount}편, 기대 13편`],
   ["프로젝트 6건", projectCount === 6, `실제 ${projectCount}건, 기대 6건`],
+  ["특허 2건 모두 노출", work.includes("10-2836534-0000") && work.includes("10-2024-0077839")],
+  ["국가 R&D 8건 (최신·최초 과제)", work.includes("K-뷰티") && work.includes("미세먼지 측정기술")],
   ["프로필 사진 basePath 경로", resume.includes("/portfolio/images/yonghaklee.jpg")],
   [
     "강의 썸네일 12장",
     lectureThumbs.length === 12,
     `실제 ${lectureThumbs.length}장, 기대 12장`,
   ],
-  ["랜딩 헤드라인", index.includes("따라 할 수 있게")],
+  // 홈은 세 페이지 안내만 한다 (2026-08 개편).
+  [
+    "홈 진입 링크 3개",
+    index.includes('href="/portfolio/resume"') &&
+      index.includes('href="/portfolio/work"') &&
+      index.includes('href="/portfolio/cv"'),
+  ],
+  ["홈에 이름 노출", index.includes("YongHak Lee")],
+  // 강의는 포트폴리오 '기타 활동'에만 남기고 이력서에서는 뺐다.
+  ["이력서에 강의 섹션 없음", !resumeOnly.includes("도커로 딥러닝 따라하기")],
+  ["포트폴리오 기타 활동에 강의 유지", work.includes("도커로 딥러닝 따라하기")],
   [
     "포트폴리오 앵커 3개",
     work.includes('id="lectures"') &&
@@ -69,9 +84,21 @@ const checks = [
       work.includes('id="research"'),
   ],
   [
-    "헤더 링크 2개",
-    resume.includes('href="/portfolio/resume"') && resume.includes('href="/portfolio/work"'),
+    "헤더 링크 3개",
+    resume.includes('href="/portfolio/resume"') &&
+      resume.includes('href="/portfolio/work"') &&
+      resume.includes('href="/portfolio/cv"'),
   ],
+  // CV는 cv.pdf(영문 LaTeX)를 그대로 옮긴 페이지다.
+  [
+    "CV 페이지 구성",
+    cv.includes("Publications") &&
+      cv.includes("Patents") &&
+      cv.includes("Research Projects") &&
+      cv.includes("Technical Skills") &&
+      cv.includes("References"),
+  ],
+  ["CV 인쇄 버튼", cv.includes("Print")],
   ...FORBIDDEN.map((word) => [`잔재 미포함: ${word}`, !pageOnly.includes(word)]),
 ];
 

@@ -1,77 +1,65 @@
 import Link from "next/link";
 import { profile } from "@/data/profile";
 
-const selectedWork = [
+const entries = [
   {
-    no: "01",
-    title: "도커로 딥러닝 따라하기 — 강의 8편",
-    meta: "교육 콘텐츠",
-    href: "/work#lectures",
+    href: "/resume",
+    label: "이력서",
+    labelEn: "Résumé",
+    desc: "경력 · 학력 · 연구 · 기술 스택",
   },
   {
-    no: "02",
-    title: "3D 데이터 활용 역설계 생성 AI 솔루션",
-    meta: "2025 – 26",
-    href: "/work#projects",
+    href: "/work",
+    label: "포트폴리오",
+    labelEn: "Portfolio",
+    desc: "프로젝트와 연구 성과의 기록",
   },
   {
-    no: "03",
-    title: "논문 9편 · 등록 특허 1건",
-    meta: "연구 성과",
-    href: "/work#research",
+    href: "/cv",
+    label: "CV",
+    labelEn: "Curriculum Vitae",
+    desc: "Academic CV (English)",
   },
 ];
 
 export default function Home() {
   return (
-    <div className="pt-20 pb-10">
-      <h1 className="text-4xl sm:text-[44px] font-extrabold leading-[1.24] tracking-[-0.03em]">
-        복잡한 AI를
-        <br />
-        <span className="text-accent">따라 할 수 있게</span>
-      </h1>
-      <p className="mt-5 text-[15px] leading-relaxed text-muted">
-        {profile.role} · 강의 12편 제작
-      </p>
-
-      <div className="mt-9 flex gap-7 text-[14px]">
-        <Link
-          href="/resume"
-          className="font-bold border-b-2 border-accent pb-1 hover:text-accent"
-        >
-          이력서 보기 →
-        </Link>
-        <Link
-          href="/work"
-          className="font-semibold text-muted border-b border-hairline pb-1 hover:text-ink"
-        >
-          포트폴리오 →
-        </Link>
-      </div>
-
-      <section className="mt-24">
-        <div className="text-[11px] font-bold tracking-[0.16em] text-faint">
-          SELECTED WORK
+    <div className="flex min-h-[70vh] flex-col justify-center pt-16 pb-16">
+      <header>
+        <h1 className="text-[40px] font-extrabold leading-none tracking-[-0.03em] sm:text-[52px]">
+          {profile.name}
+        </h1>
+        <p className="mt-2 text-[14px] tracking-[0.08em] text-faint">{profile.nameEn}</p>
+        <div className="mt-6 border-t border-ink pt-4 text-[14px] leading-relaxed">
+          <p>{profile.role}</p>
+          <p className="mt-0.5 text-muted">{profile.focus}</p>
         </div>
-        <ul className="mt-2 border-t border-ink">
-          {selectedWork.map((w) => (
-            <li key={w.no} className="border-b border-hairline last:border-b-0">
-              <Link
-                href={w.href}
-                className="flex items-baseline gap-5 py-4 group"
-              >
-                <span className="text-[12px] font-bold text-accent tabular-nums">
-                  {w.no}
+      </header>
+
+      <nav className="mt-12">
+        <ul className="border-t border-hairline">
+          {entries.map((e) => (
+            <li key={e.href} className="border-b border-hairline">
+              <Link href={e.href} className="group flex items-baseline gap-5 py-6">
+                <span className="flex-1">
+                  <span className="block text-[22px] font-extrabold tracking-tight group-hover:text-accent sm:text-[24px]">
+                    {e.label}
+                  </span>
+                  <span className="mt-1 block text-[12.5px] text-faint">
+                    {e.labelEn} · {e.desc}
+                  </span>
                 </span>
-                <span className="flex-1 text-[15px] font-bold group-hover:text-accent">
-                  {w.title}
+                <span
+                  aria-hidden
+                  className="shrink-0 text-[16px] text-hairline transition-colors group-hover:text-accent"
+                >
+                  →
                 </span>
-                <span className="text-[12px] text-faint">{w.meta}</span>
               </Link>
             </li>
           ))}
         </ul>
-      </section>
+      </nav>
     </div>
   );
 }

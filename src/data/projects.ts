@@ -7,6 +7,8 @@ export interface ProjectPoint {
 // 연구 프로젝트는 문제 상황(problems)과 해결(solutions)으로 서술한다.
 // 서술 구조가 다른 두 갈래를 한 목록에 담기 위한 스키마이고,
 // 렌더러(work/page.tsx의 ProjectCard)는 존재하는 블록만 그린다.
+//
+// tech는 카드 한 줄에 들어가도록 4개 이하로 유지한다. 세부 라이브러리까지 나열하지 않는다.
 export interface Project {
   no: string;
   title: string;
@@ -26,28 +28,19 @@ export const projects: Project[] = [
     title: "3D 데이터 활용 역설계 생성 AI 솔루션 개발",
     period: "2025 – 2026",
     role: "개발 총괄 (AI 바우처 공급기업)",
-    tech: [
-      "Claude Code · MCP",
-      "PyTorch · SIREN",
-      "FastAPI · uv",
-      "Open3D · pythonocc(STEP)",
-      "Next.js 16 · React 19",
-      "Three.js",
-      "TailwindCSS · shadcn/ui",
-      "Docker Compose",
-    ],
+    tech: ["PyTorch · SIREN", "Open3D · pythonocc", "FastAPI", "Next.js · Three.js"],
     works: [
       {
-        lead: "AI Agent 주도 개발",
-        text: "Claude Code로 백엔드·프론트 전 영역 설계·구현·리팩터링 · MCP(shadcn · Playwright · context7) 연동 AX 워크플로우",
-      },
-      {
         lead: "3D 역설계 파이프라인",
-        text: "포인트 클라우드 세그멘테이션 → SIREN 자유곡면·프리미티브 피팅 → 위상 구성으로 CAD 복원 (point2cad)",
+        text: "포인트 클라우드 세그멘테이션 → SIREN 자유곡면·프리미티브 피팅 → 위상 구성으로 CAD 복원",
       },
       {
-        lead: "백엔드·3D 처리",
-        text: "FastAPI 비동기 변환 + JWT 인증 · Open3D 메시 생성 · pythonocc STEP(B-Rep) 변환 · Three.js 미리보기",
+        lead: "백엔드 · 3D 처리",
+        text: "FastAPI 비동기 변환 파이프라인, Open3D 메시 생성, STEP(B-Rep) 변환, Three.js 웹 미리보기",
+      },
+      {
+        lead: "AI Agent 주도 개발",
+        text: "Claude Code로 백엔드·프론트 전 영역을 설계·구현·리팩터링",
       },
     ],
     results: ["시험성적서 발급 (성능목표 3항목 적합)", "과제 정상 완료"],
@@ -61,14 +54,7 @@ export const projects: Project[] = [
     title: "2025 데이터바우처 공급기업 수행",
     period: "2025",
     role: "수행 총괄 — 3개 수요기업 학습데이터 30,000건+ 수집·생성·가공·납품",
-    tech: [
-      "FLUX (이미지 생성 모델)",
-      "Prompt Conditioning",
-      "LabelMe",
-      "Ultralytics YOLO",
-      "PyTorch · CUDA",
-      "COCO / YOLO 포맷",
-    ],
+    tech: ["FLUX", "Ultralytics YOLO", "PyTorch", "COCO / YOLO 포맷"],
     works: [
       {
         lead: "영웅딸기",
@@ -83,15 +69,14 @@ export const projects: Project[] = [
         text: "파프리카 10,000건 + 길이·둘레·무게 계측 데이터 · Keypoint",
       },
       {
-        lead: "이미지 생성 모델(FLUX) 활용",
-        text: "실촬영으로 닿지 않는 조명·배경·결함 조건을 프롬프트 조건화로 합성해 데이터 편중을 메움 — 생성 이미지도 동일 검수 기준으로 통과시켜 납품",
+        lead: "생성 모델로 데이터 편중 보완",
+        text: "실촬영으로 닿지 않는 조명·배경·결함 조건을 FLUX 프롬프트 조건화로 합성하고, 생성 이미지도 동일 검수 기준으로 납품",
       },
     ],
     results: ["과제 3건 정상 완료", "전수 검수 결측치 0%"],
     images: [
       { src: "/images/projects/datavoucher-strawberry.png", alt: "영웅딸기 — 딸기·노엽 자동 라벨링 결과" },
       { src: "/images/projects/datavoucher-clothing.png", alt: "씨오에프 — 의류 자동 라벨링 결과" },
-      { src: "/images/projects/datavoucher-paprika.png", alt: "아비넨 — 파프리카 자동 라벨링 결과" },
     ],
   },
   {
@@ -100,7 +85,7 @@ export const projects: Project[] = [
       "모바일 LiDAR와 딥러닝 기반의 키포인트 탐지를 이용한 다중 스케일 객체 3차원 계측 및 속성 추정 프레임워크",
     period: "2023.01 – 2026.06",
     role: "데이터 수집 및 전처리 · 모델 학습 및 평가 · 모델 고도화 · 논문 작성",
-    tech: ["Mobile LiDAR", "3D Point Cloud", "Python", "PyTorch", "HRNet", "YOLO"],
+    tech: ["Mobile LiDAR", "3D Point Cloud", "PyTorch", "HRNet · YOLO"],
     problems: [
       { lead: "2D 비전 한계", text: "단순 이미지는 거리 정보가 없어 실제 크기 측정 시 별도 참조물이 필요함" },
       { lead: "환경 통제 제약", text: "기존 방식은 카메라 거리, 조명, 배경 등을 엄격히 통제해야 해 실용성이 낮음" },
@@ -127,7 +112,7 @@ export const projects: Project[] = [
     title: "로봇 센서 데이터 분석을 통한 가스배관 변화구간 및 길이 탐지 솔루션 개발",
     period: "2022.01 – 2023.01",
     role: "데이터 전처리 · 파생변수 생성 · 모델 학습 및 평가 · 모델 고도화 · 패키징",
-    tech: ["Python", "Random Forest", "LightGBM", "YOLO", "Sensor Data"],
+    tech: ["Python", "Random Forest · LightGBM", "YOLO", "Sensor Data"],
     problems: [
       { lead: "자동화의 한계", text: "센서 데이터만으로 WELD(접합부), BEND(만곡부) 구간 탐지를 자동화하기 어려움" },
       { lead: "MLP 성능 한계", text: "입력 크기 고정 제약으로 인해 정확도가 0.18~0.34로 저조함" },
@@ -149,7 +134,7 @@ export const projects: Project[] = [
     title: "상품 추천을 위한 시각 이미지와 메타데이터 통합 분석 방법론 개발",
     period: "2021.01 – 2022.01",
     role: "데이터 수집 및 전처리 · 모델 학습 및 평가 · 모델 고도화 · 논문 작성",
-    tech: ["Python", "PyTorch", "MobileNetV3", "Sentence-BERT", "Amazon Fashion Meta-data"],
+    tech: ["PyTorch", "MobileNetV3", "Sentence-BERT", "Amazon Fashion Meta-data"],
     problems: [
       { lead: "단일 데이터의 한계", text: "이미지나 텍스트 중 하나만 사용하면 예측 정확도 확보가 어려움" },
       { lead: "모바일 연산 제약", text: "기존 심층 CNN 모델은 모바일 기기에서 구동하기에 연산 부담이 큼" },

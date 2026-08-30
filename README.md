@@ -1,13 +1,17 @@
-# 이용학 — 이력서 · 포트폴리오
+# 이용학 — 이력서 · 포트폴리오 · CV
 
-AI 엔지니어 · 응용통계학 박사과정. 이력서와 포트폴리오를 담은 개인 웹사이트입니다.
+AI 엔지니어 · 응용통계학 박사. 컴퓨터 비전과 3D 계측을 다룹니다.
+이력서 · 포트폴리오 · 영문 CV를 담은 개인 웹사이트입니다.
 
 **https://yonghaklee.github.io/portfolio/**
 
 | 링크 | 내용 |
 |---|---|
-| [이력서](https://yonghaklee.github.io/portfolio/resume) | 소개 · 경력 · 학력 · 연구 · 기술 스택 |
-| [포트폴리오](https://yonghaklee.github.io/portfolio/work) | 교육 콘텐츠 · 프로젝트 · 연구 성과 |
+| [이력서](https://yonghaklee.github.io/portfolio/resume) | 소개 · 경력 · 학력 · 기술 스택 · 연구 · 프로젝트 |
+| [포트폴리오](https://yonghaklee.github.io/portfolio/work) | 프로젝트 · 연구 성과 · 기타 활동 |
+| [CV](https://yonghaklee.github.io/portfolio/cv) | 영문 학술 CV (`cv/cv.pdf`와 같은 내용) |
+
+세 페이지 모두 우측 상단의 **인쇄 · PDF로 저장** 버튼(또는 `Ctrl/⌘ + P`)으로 PDF가 됩니다.
 
 ## 기술 스택
 
@@ -23,4 +27,4 @@ npm run dev    # http://localhost:3000/portfolio
 `next.config.ts`의 `basePath`가 `/portfolio`라 개발 서버에서도 경로 앞에 `/portfolio`가 붙습니다.
 `basePath`는 `src/lib/paths.ts`의 `BASE_PATH` 한 곳에서 관리합니다.
 
-관리 절차(이미지 가공, 배포, 이력서 PDF)는 [운영 메모](docs/운영메모.md)에 있습니다.
+관리 절차(이미지 가공, 배포, PDF 저장)는 [운영 메모](docs/운영메모.md)에 있습니다.
