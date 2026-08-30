@@ -1,0 +1,66 @@
+name: Deploy Next.js site to GitHub Pages
+
+on:
+  # main 브랜치에 push될 때마다 실행
+  push:
+    branches: [main]
+  # GitHub 웹의 Actions 탭에서 수동 실행도 가능하게
+  workflow_dispatch:
+
+# 배포에 필요한 권한
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# 배포가 겹치면 이전 것을 기다리도록
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  # 1단계: 빌드
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 소스 코드 가져오기
+        uses: actions/checkout@v4
+
+      - name: Node.js 설치
+        uses: actions/setup-node@v4
+        with:
+          # 로컬 개발 환경과 같은 메이저로 맞춘다. npm 10과 11은 sharp의 wasm 변종이
+          # 끌고 오는 선택적 의존성(@emnapi/*)을 락파일에 다르게 기록해서,
+          # 버전이 어긋나면 npm ci가 "lock file out of sync"로 막힌다.
+          node-version: 24
+          cache: npm
+
+      # npm ci를 쓰지 않는 이유: sharp의 wasm 폴백(@img/sharp-wasm32)이 @emnapi/runtime을
+      # 요구하는데, 이 optional 의존성은 락파일을 만든 플랫폼에서 건너뛰어져 기록되지 않는다.
+      # 그러면 npm ci가 "lock file out of sync"로 막힌다. sharp는 로컬 이미지 가공
+      # 스크립트에서만 쓰고 이 빌드는 건드리지 않으므로, 여기서는 npm install로 새로 푼다.
+      - name: 의존성 설치
+        run: npm install --no-audit --no-fund
+
+      - name: 빌드 (out/ 폴더 생성)
+        run: npm run build
+
+      - name: 산출물 검사
+        run: node scripts/check-output.mjs
+
+      - name: 빌드 결과물 업로드
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./out
+
+  # 2단계: 배포
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: GitHub Pages에 배포
+        id: deployment
+        uses: actions/deploy-pages@v4
