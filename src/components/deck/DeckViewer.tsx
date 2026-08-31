@@ -32,7 +32,7 @@ export default function DeckViewer() {
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.metaKey || e.ctrlKey || e.altKey || e.shiftKey) return;
       if (e.key === "ArrowRight" || e.key === " " || e.key === "PageDown") {
         e.preventDefault();
         setIndex((i) => Math.min(i + 1, LAST));
@@ -71,7 +71,11 @@ export default function DeckViewer() {
         <button
           type="button"
           className="deck-arrow"
-          onClick={() => setIndex((i) => Math.max(i - 1, 0))}
+          onClick={(e) => {
+            setIndex((i) => Math.max(i - 1, 0));
+            // 발표 중 Space가 항상 다음 장을 뜻하도록 포커스를 놓는다.
+            (e.currentTarget as HTMLButtonElement).blur();
+          }}
           disabled={index === 0}
           aria-label="이전 슬라이드"
         >
@@ -88,8 +92,10 @@ export default function DeckViewer() {
               <li key={c.key} style={{ flexGrow: chapterCount(c.key) }}>
                 <button
                   type="button"
-                  onClick={() => {
+                  onClick={(e) => {
                     if (start >= 0) setIndex(start);
+                    // 발표 중 Space가 항상 다음 장을 뜻하도록 포커스를 놓는다.
+                    (e.currentTarget as HTMLButtonElement).blur();
                   }}
                   disabled={start < 0}
                   aria-current={current.chapter === c.key}
@@ -104,7 +110,11 @@ export default function DeckViewer() {
         <button
           type="button"
           className="deck-arrow"
-          onClick={() => setIndex((i) => Math.min(i + 1, LAST))}
+          onClick={(e) => {
+            setIndex((i) => Math.min(i + 1, LAST));
+            // 발표 중 Space가 항상 다음 장을 뜻하도록 포커스를 놓는다.
+            (e.currentTarget as HTMLButtonElement).blur();
+          }}
           disabled={index === LAST}
           aria-label="다음 슬라이드"
         >
