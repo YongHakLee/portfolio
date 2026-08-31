@@ -30,7 +30,8 @@
   padding: 3vmin;
 }
 
-/* 16:9를 유지하면서 뷰포트 안에 들어가는 가장 큰 상자 */
+/* 16:9를 유지하면서 뷰포트 안에 들어가는 가장 큰 상자.
+   컨테이너 쿼리 단위는 컨테이너 자신의 박스 모델 속성(padding, gap)에 사용될 수 없다. */
 .deck-slide {
   display: none;
   width: min(100%, calc((100dvh - 9rem) * 16 / 9));
@@ -39,7 +40,7 @@
   padding: 4%;
   border: 1px solid var(--hairline);
   grid-template-rows: auto 1fr;
-  gap: 3cqh;
+  gap: 3%;
 }
 
 .deck-slide.is-active {
