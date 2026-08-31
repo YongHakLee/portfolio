@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { slides } from "@/data/deck";
-import Slide from "@/components/deck/Slide";
+import DeckViewer from "@/components/deck/DeckViewer";
 
 export const metadata: Metadata = {
   title: "발표",
@@ -14,17 +13,7 @@ export default function DeckPage() {
       <Link href="/" className="deck-back no-print">
         ← 사이트로
       </Link>
-      <div className="deck-stage">
-        {slides.map((slide, i) => (
-          <Slide
-            key={slide.id}
-            slide={slide}
-            no={i + 1}
-            total={slides.length}
-            active={i === 0}
-          />
-        ))}
-      </div>
+      <DeckViewer />
     </>
   );
 }
