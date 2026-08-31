@@ -48,6 +48,7 @@ const youtubeLinkCount = (work.match(/href="https:\/\/www\.youtube\.com\/watch\?
   .length;
 const publicationCount = (work.match(/data-pub="true"/g) || []).length;
 const projectCount = (work.match(/data-project="/g) || []).length;
+const deckSlideCount = (deck.match(/data-slide="/g) || []).length;
 
 const checks = [
   ["전화번호 미노출", !/[-\s]8295/.test(all)],
@@ -106,6 +107,11 @@ const checks = [
     !deck.includes('href="/portfolio/resume"') &&
       !deck.includes('href="/portfolio/work"') &&
       !deck.includes('href="/portfolio/cv"'),
+  ],
+  [
+    "덱 슬라이드 2장",
+    deckSlideCount === 2,
+    `실제 ${deckSlideCount}장, 기대 2장`,
   ],
   // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
   ["인쇄 버튼 없음", !/<button/i.test(all)],
