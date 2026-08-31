@@ -20,6 +20,7 @@ const index = await readPage("index");
 const resume = await readPage("resume");
 const work = await readPage("work");
 const cv = await readPage("cv");
+const deck = await readPage("deck");
 const all = index + resume + work + cv;
 
 const lectureThumbs = await readdir("out/images/lectures");
@@ -97,6 +98,14 @@ const checks = [
       cv.includes("Research Projects") &&
       cv.includes("Technical Skills") &&
       cv.includes("References"),
+  ],
+  // 덱은 (deck) 라우트 그룹이라 사이트 헤더·푸터가 붙지 않는다.
+  // 헤더 링크가 산출물에 보이면 (site) 레이아웃이 잘못 적용된 것이다.
+  [
+    "덱에 사이트 헤더 없음",
+    !deck.includes('href="/portfolio/resume"') &&
+      !deck.includes('href="/portfolio/work"') &&
+      !deck.includes('href="/portfolio/cv"'),
   ],
   // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
   ["인쇄 버튼 없음", !/<button/i.test(all)],

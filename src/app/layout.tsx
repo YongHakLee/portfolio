@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import SiteHeader from "@/components/SiteHeader";
-import SiteFooter from "@/components/SiteFooter";
 import "./globals.css";
 
 const pretendard = localFont({
@@ -27,13 +25,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko" className={`${pretendard.variable} h-full antialiased`}>
-      <body className="min-h-full font-sans">
-        <div className="min-h-dvh flex flex-col">
-          <SiteHeader />
-          <main className="w-full max-w-3xl mx-auto flex-1 px-6">{children}</main>
-          <SiteFooter />
-        </div>
-      </body>
+      <body className="min-h-full font-sans">{children}</body>
     </html>
   );
 }
