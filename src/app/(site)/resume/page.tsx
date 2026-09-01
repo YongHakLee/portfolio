@@ -87,7 +87,7 @@ export default function ResumePage() {
               <ul className="mt-2 space-y-1 text-[13.5px] leading-relaxed text-muted">
                 {c.tasks.map((t) => (
                   <li key={t} className="flex gap-2">
-                    <span aria-hidden className="text-hairline">—</span>
+                    <span aria-hidden className="text-hairline">·</span>
                     <span>{t}</span>
                   </li>
                 ))}
@@ -97,7 +97,7 @@ export default function ResumePage() {
         </div>
       </section>
 
-      {/* 04 학력 — 항목 단위로만 페이지를 넘기지 않게 한다(섹션 전체를 묶으면 앞 쪽에 큰 여백이 생김) */}
+      {/* 04 학력: 항목 단위로만 페이지를 넘기지 않게 한다(섹션 전체를 묶으면 앞 쪽에 큰 여백이 생김) */}
       <section className="mt-12">
         <SectionHeading no="04" title="학력" />
         <div className="mt-4 space-y-5">
@@ -108,7 +108,7 @@ export default function ResumePage() {
                 <span className="text-[12px] text-faint tabular-nums">{e.period}</span>
               </div>
               <p className="mt-0.5 text-[13.5px] text-muted">{e.degree}</p>
-              {e.thesis && <p className="mt-1 text-[12.5px] text-faint">논문 — {e.thesis}</p>}
+              {e.thesis && <p className="mt-1 text-[12.5px] text-faint">논문 · {e.thesis}</p>}
             </div>
           ))}
         </div>
@@ -146,7 +146,7 @@ export default function ResumePage() {
             </div>
           ))}
           <p className="text-[12.5px] text-faint">
-            외 참여 논문 {publications.length - featured.length}편 —{" "}
+            외 참여 논문 {publications.length - featured.length}편,{" "}
             <Link href="/work#research" className="no-print font-semibold text-accent">
               전체 목록은 포트폴리오에서 →
             </Link>
@@ -160,7 +160,7 @@ export default function ResumePage() {
             <p key={p.title} className="text-[13px] leading-relaxed">
               <span className="text-faint">{p.status}</span>{" "}
               <span className="font-semibold">{p.title}</span>{" "}
-              <span className="text-faint tabular-nums">— {p.registered ?? p.applied}</span>
+              <span className="text-faint tabular-nums">· {p.registered ?? p.applied}</span>
             </p>
           ))}
         </div>

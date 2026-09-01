@@ -29,7 +29,7 @@ function Authors({ text }: { text: string }) {
   );
 }
 
-/* 문제 상황 / 해결과 성과 / 수행 내용 — 리드 문구 + 설명 목록 (공통 모양) */
+/* 문제 상황 / 해결과 성과 / 수행 내용: 리드 문구 + 설명 목록 (공통 모양) */
 function Points({ title, items }: { title: string; items: ProjectPoint[] }) {
   return (
     <div className="print-avoid-break">
@@ -38,7 +38,7 @@ function Points({ title, items }: { title: string; items: ProjectPoint[] }) {
         {items.map((pt) => (
           <li key={pt.lead}>
             <span className="font-bold">{pt.lead}</span>
-            <span className="text-muted"> — {pt.text}</span>
+            <span className="text-muted"> · {pt.text}</span>
           </li>
         ))}
       </ul>
@@ -117,7 +117,7 @@ export default function WorkPage() {
           프로젝트와 연구
         </h1>
         <p className="mt-4 max-w-xl text-[14.5px] leading-[1.75] text-muted">
-          미세먼지 측정부터 모바일 LiDAR 3D 계측, 3D 역설계까지 — 문제를 정의하고 데이터를 모아
+          미세먼지 측정부터 모바일 LiDAR 3D 계측, 3D 역설계까지. 문제를 정의하고 데이터를 모아
           모델을 만들어 검증한 뒤, 그 결과를 논문과 특허로 남겨온 기록입니다.
         </p>
       </header>
@@ -212,7 +212,7 @@ export default function WorkPage() {
         </ul>
       </section>
 
-      {/* 04 기타 활동 — 강의는 목록만 간단히 */}
+      {/* 04 기타 활동: 강의는 목록만 간단히 */}
       <section id="lectures" className="mt-20 scroll-mt-8 print-avoid-break">
         <SectionHeading no="04" title="기타 활동" />
         <p className="mt-4 text-[13.5px] leading-relaxed text-muted">

@@ -45,7 +45,7 @@ export const projects: Project[] = [
     ],
     results: ["시험성적서 발급 (성능목표 3항목 적합)", "과제 정상 완료"],
     images: [
-      { src: "/images/projects/3d-eval.png", alt: "AI 바우처 시험성적서 — 성능목표 적합" },
+      { src: "/images/projects/3d-eval.png", alt: "AI 바우처 시험성적서 · 성능목표 적합" },
       { src: "/images/projects/3d-demo.png", alt: "3D 스캐너로 임펠러 포인트 클라우드를 수집하는 화면" },
     ],
   },
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     no: "02",
     title: "2025 데이터바우처 공급기업 수행",
     period: "2025",
-    role: "수행 총괄 — 3개 수요기업 학습데이터 30,000건+ 수집·생성·가공·납품",
+    role: "수행 총괄 · 3개 수요기업 학습데이터 30,000건+ 수집·생성·가공·납품",
     tech: ["FLUX", "Ultralytics YOLO", "PyTorch", "COCO / YOLO 포맷"],
     works: [
       {
@@ -75,8 +75,8 @@ export const projects: Project[] = [
     ],
     results: ["과제 3건 정상 완료", "전수 검수 결측치 0%"],
     images: [
-      { src: "/images/projects/datavoucher-strawberry.png", alt: "영웅딸기 — 딸기·노엽 자동 라벨링 결과" },
-      { src: "/images/projects/datavoucher-clothing.png", alt: "씨오에프 — 의류 자동 라벨링 결과" },
+      { src: "/images/projects/datavoucher-strawberry.png", alt: "영웅딸기 · 딸기·노엽 자동 라벨링 결과" },
+      { src: "/images/projects/datavoucher-clothing.png", alt: "씨오에프 · 의류 자동 라벨링 결과" },
     ],
   },
   {

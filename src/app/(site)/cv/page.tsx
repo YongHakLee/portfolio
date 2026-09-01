@@ -11,7 +11,7 @@ import {
 
 export const metadata: Metadata = {
   title: "CV",
-  description: "Academic curriculum vitae of YongHak Lee — computer vision and 3D measurement",
+  description: "Academic curriculum vitae of YongHak Lee: computer vision and 3D measurement",
 };
 
 /* LaTeX 문서의 \section 처럼 얇은 밑줄이 달린 제목.
