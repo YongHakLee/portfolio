@@ -109,9 +109,9 @@ const checks = [
       !deck.includes('href="/portfolio/cv"'),
   ],
   [
-    "덱 슬라이드 2장",
-    deckSlideCount === 2,
-    `실제 ${deckSlideCount}장, 기대 2장`,
+    "덱 슬라이드 6장",
+    deckSlideCount === 6,
+    `실제 ${deckSlideCount}장, 기대 6장`,
   ],
   // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
   ["인쇄 버튼 없음", !/<button/i.test(all)],

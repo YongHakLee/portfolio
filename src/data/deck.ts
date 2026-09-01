@@ -81,4 +81,118 @@ export const slides: Slide[] = [
     figure: "rgb-gap",
     note: "두 결핍 모두 표면까지의 거리를 몰라서 생긴다 — 모바일 LiDAR가 그 값을 준다",
   },
+  {
+    id: "s03",
+    chapter: "dissertation",
+    eyebrow: "박사논문 · Theme I",
+    title: "Theme I — 3D 생체인식",
+    blocks: [
+      {
+        kind: "points",
+        items: [
+          {
+            lead: "SqueezeFace",
+            text: "RGB·깊이맵·포인트 클라우드를 7채널로 합치고, ResNet-34에 공간적응 합성곱 주의(SAC) 블록과 마진 손실을 넣었다. 3-shot 검증에서 임계값을 높여도 정확도가 유지된다 — 깊이가 중복 정보가 아니라 클래스 간 분리도를 실제로 넓힌다는 근거다.",
+          },
+          {
+            lead: "CloudNet",
+            text: "조명 3구간의 LDFAS 데이터셋을 만들고, RGB망과 LiDAR망을 따로 학습해 초기+후기 하이브리드 융합으로 합쳤다.",
+          },
+        ],
+      },
+      {
+        kind: "metrics",
+        items: [
+          { value: "99.88%", label: "SqueezeFace 정확도 · 83명 · F1 0.9345" },
+          { value: "1/3", label: "조명이 바뀔 때 ACER 열화 (+0.40·+0.41 → +0.13·+0.15)" },
+        ],
+      },
+    ],
+    figure: "theme1",
+    note: "LiDAR 특징은 RGB처럼 생기지 않는다 — 그래서 주의 블록과 융합 지점을 따로 설계했다",
+  },
+  {
+    id: "s04",
+    chapter: "dissertation",
+    eyebrow: "박사논문 · Theme II",
+    title: "옷 한 장의 치수를 자동으로",
+    blocks: [
+      {
+        kind: "points",
+        items: [
+          {
+            lead: "치수점 검출",
+            text: "HRNet-W48을 DeepFashion2로 파인튜닝해 카테고리별 치수점을 찾는다. 좌·우 키포인트를 비대칭으로 라벨링하는 문제는 좌우 대칭 인식 증강으로 풀었다.",
+          },
+          {
+            lead: "실거리 계산",
+            text: "두 점 사이 거리를 픽셀 격자가 아니라 동기 촬영된 포인트 클라우드 위에서 잰다.",
+          },
+        ],
+      },
+      {
+        kind: "metrics",
+        items: [
+          { value: "1.59%", label: "평균 상대오차 · 배경 통제" },
+          { value: "2.08%", label: "배경 통제 없이" },
+          { value: "660회", label: "5개 카테고리 33벌 × 10회" },
+        ],
+      },
+    ],
+    figure: "garment",
+    note: "배경이 어지러워도 0.5%p만 나빠진다",
+  },
+  {
+    id: "s05",
+    chapter: "dissertation",
+    eyebrow: "박사논문 · Theme II",
+    title: "사람 몸은 왜 더 어려운가",
+    blocks: [
+      {
+        kind: "points",
+        items: [
+          {
+            lead: "표면이 굽어 있다",
+            text: "정면과 측면 두 컷의 반둘레를 회귀로 합성한다. Ct = β(Cf + Cs) + ε",
+          },
+          {
+            lead: "키포인트가 옷에 가려 있다",
+            text: "가슴·허리·엉덩이·둔부·대퇌골과를 수동 라벨링한 1,000장으로 HRNet을 전이학습했다.",
+          },
+          {
+            lead: "점이 몸이 아니라 배경에 찍힌다",
+            text: "Canny 에지 기반 깊이맵 보정으로 검출점을 몸 표면에 되돌린다.",
+          },
+        ],
+      },
+      {
+        kind: "metrics",
+        items: [
+          { value: "< 4%", label: "허리 · 엉덩이 둘레 상대오차 · 피험자 4명" },
+          { value: "0.7초", label: "1회 측정 · 3D 메시 복원 없이" },
+        ],
+      },
+    ],
+    figure: "body",
+    note: "↓ 이 방법이 특허1의 청구항이 된다",
+  },
+  {
+    id: "s06",
+    chapter: "dissertation",
+    eyebrow: "박사논문 · 종합",
+    title: "네 연구를 관통하는 하나",
+    blocks: [
+      {
+        kind: "table",
+        head: ["연구", "RGB의 한계", "LiDAR가 준 것", "모델 쪽 설계"],
+        rows: [
+          ["SqueezeFace", "분리도 부족", "표면 굴곡", "SAC 주의 블록"],
+          ["CloudNet", "조명에 취약", "조명 불변 깊이", "하이브리드 융합"],
+          ["의류 계측", "실거리 없음", "절대 거리", "대칭 인식 증강"],
+          ["인체 계측", "실거리 · 가림", "절대 거리", "깊이맵 보정 + 회귀"],
+        ],
+      },
+    ],
+    note: "모달리티를 아는 융합 — 이 패턴이 특허 2건으로 이어졌다",
+  },
 ];
