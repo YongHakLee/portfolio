@@ -71,12 +71,13 @@ const checks = [
     lectureThumbs.length === 12,
     `실제 ${lectureThumbs.length}장, 기대 12장`,
   ],
-  // 홈은 세 페이지 안내만 한다 (2026-08 개편).
+  // 홈은 네 페이지를 안내한다 (2026-08 개편 + 발표 덱).
   [
-    "홈 진입 링크 3개",
+    "홈 진입 링크 4개",
     index.includes('href="/portfolio/resume"') &&
       index.includes('href="/portfolio/work"') &&
-      index.includes('href="/portfolio/cv"'),
+      index.includes('href="/portfolio/cv"') &&
+      index.includes('href="/portfolio/deck"'),
   ],
   ["홈에 이름 노출", index.includes("YongHak Lee")],
   // 강의는 포트폴리오 '기타 활동'에만 남기고 이력서에서는 뺐다.
@@ -89,10 +90,11 @@ const checks = [
       work.includes('id="research"'),
   ],
   [
-    "헤더 링크 3개",
+    "헤더 링크 4개",
     resume.includes('href="/portfolio/resume"') &&
       resume.includes('href="/portfolio/work"') &&
-      resume.includes('href="/portfolio/cv"'),
+      resume.includes('href="/portfolio/cv"') &&
+      resume.includes('href="/portfolio/deck"'),
   ],
   // CV는 cv.pdf(영문 LaTeX)를 그대로 옮긴 페이지다.
   [

@@ -20,6 +20,12 @@ const entries = [
     labelEn: "Curriculum Vitae",
     desc: "Academic CV (English)",
   },
+  {
+    href: "/deck",
+    label: "발표",
+    labelEn: "Deck",
+    desc: "박사논문과 특허, 5분 요약",
+  },
 ];
 
 export default function Home() {

@@ -17,6 +17,9 @@ export default function SiteHeader() {
           <Link href="/cv" className="whitespace-nowrap hover:text-ink">
             CV
           </Link>
+          <Link href="/deck" className="whitespace-nowrap hover:text-ink">
+            발표
+          </Link>
         </nav>
       </div>
     </header>
