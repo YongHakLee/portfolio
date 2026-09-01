@@ -174,6 +174,56 @@ const Patent1Core = () => (
   </svg>
 );
 
+const Patent2Flow = () => (
+  <svg viewBox="0 0 460 108" role="img" aria-labelledby="fig-p2flow">
+    <title id="fig-p2flow">2D 컬러와 3D 깊이를 정합해 부위별 주름 영역을 정한다</title>
+
+    <rect x="0" y="16" width="96" height="28" rx="3" />
+    <text x="10" y="34">2D 컬러 영상</text>
+    <rect x="0" y="58" width="96" height="28" rx="3" />
+    <text x="10" y="76">3D 깊이 영상</text>
+    <path d="M96 30 h20 v42 h-20" />
+    <path d="M96 72 h20" />
+    <rect x="116" y="37" width="60" height="28" rx="3" />
+    <text x="126" y="55">정합</text>
+    <line x1="176" y1="51" x2="196" y2="51" />
+    <rect x="196" y="37" width="104" height="28" rx="3" />
+    <text x="206" y="55">포인트 클라우드</text>
+    <line x1="300" y1="51" x2="320" y2="51" />
+    <rect className="fig-accent" x="320" y="37" width="132" height="28" rx="3" />
+    <text className="fig-em" x="330" y="55">부위별 주름 영역</text>
+    <text x="196" y="86">길이 · 깊이 · 밀도로 영역 확정</text>
+  </svg>
+);
+
+const Patent2Core = () => (
+  <svg viewBox="0 0 460 124" role="img" aria-labelledby="fig-p2core">
+    <title id="fig-p2core">1차·2차 랜드마크와 팔자주름의 구간별 깊이</title>
+
+    <text x="0" y="10">1차 — 눈 · 코 · 입</text>
+    <path d="M60 18 q34 0 34 38 0 38 -34 52 -34 -14 -34 -52 0 -38 34 -38 z" />
+    <circle cx="46" cy="46" r="3" />
+    <circle cx="74" cy="46" r="3" />
+    <circle cx="60" cy="62" r="3" />
+    <path d="M46 80 q14 8 28 0" />
+    <path className="fig-accent" d="M44 60 q-6 16 2 26" />
+    <path className="fig-accent" d="M76 60 q6 16 -2 26" />
+    <text className="fig-em" x="0" y="120">2차 — 부위별 주름 영역 (팔자주름)</text>
+
+    <line x1="180" y1="10" x2="180" y2="104" />
+
+    <text x="204" y="10">U-Net → 형상 + 구간별 깊이</text>
+    <polyline
+      className="fig-accent"
+      points="204,38 232,64 260,48 288,70 316,42 344,60 372,38"
+    />
+    <line x1="204" y1="84" x2="372" y2="84" />
+    <text x="204" y="98">구간</text>
+    <text x="386" y="56">깊이</text>
+    <text x="204" y="120">팔자주름 → 얼굴노화분석 모델 → 신체적 나이</text>
+  </svg>
+);
+
 const FIGURES: Record<FigureKey, FC> = {
   "rgb-gap": RgbGap,
   theme1: Theme1,
@@ -181,8 +231,8 @@ const FIGURES: Record<FigureKey, FC> = {
   body: Body,
   "patent1-flow": Patent1Flow,
   "patent1-core": Patent1Core,
-  "patent2-flow": RgbGap,
-  "patent2-core": RgbGap,
+  "patent2-flow": Patent2Flow,
+  "patent2-core": Patent2Core,
 };
 
 export function Figure({ name }: { name: FigureKey }) {

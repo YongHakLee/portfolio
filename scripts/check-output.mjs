@@ -49,6 +49,9 @@ const youtubeLinkCount = (work.match(/href="https:\/\/www\.youtube\.com\/watch\?
 const publicationCount = (work.match(/data-pub="true"/g) || []).length;
 const projectCount = (work.match(/data-project="/g) || []).length;
 const deckSlideCount = (deck.match(/data-slide="/g) || []).length;
+const deckChapters = ["dissertation", "patent-1", "patent-2"].filter((c) =>
+  deck.includes(`data-chapter="${c}"`),
+);
 
 const checks = [
   ["전화번호 미노출", !/[-\s]8295/.test(all)],
@@ -109,13 +112,22 @@ const checks = [
       !deck.includes('href="/portfolio/cv"'),
   ],
   [
-    "덱 슬라이드 8장",
-    deckSlideCount === 8,
-    `실제 ${deckSlideCount}장, 기대 8장`,
+    "덱 슬라이드 10장",
+    deckSlideCount === 10,
+    `실제 ${deckSlideCount}장, 기대 10장`,
   ],
   [
     "덱에 특허1 번호 노출",
     deck.includes("10-2024-0077839") && deck.includes("10-2025-0177277"),
+  ],
+  [
+    "덱에 특허2 번호 노출",
+    deck.includes("10-2024-0174052") && deck.includes("10-2836534"),
+  ],
+  [
+    "덱 챕터 3개",
+    deckChapters.length === 3,
+    `실제 ${deckChapters.join(", ") || "없음"}`,
   ],
   // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
   ["인쇄 버튼 없음", !/<button/i.test(all)],
