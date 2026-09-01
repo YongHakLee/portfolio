@@ -2,7 +2,7 @@
 // 사용법: npm run build 후 `node scripts/check-output.mjs`
 //
 // 이 저장소는 NFS 마운트라 로컬에서 `next build`가 막힌다(access(W_OK) 오보고).
-// 그래서 이 검사는 실질적으로 GitHub Actions에서만 돈다 — deploy.yml의 빌드 다음 단계다.
+// 그래서 이 검사는 실질적으로 GitHub Actions에서만 돈다. deploy.yml의 빌드 다음 단계다.
 import { readFile, readdir } from "node:fs/promises";
 
 async function readPage(name) {
@@ -114,9 +114,9 @@ const checks = [
       !deck.includes('href="/portfolio/cv"'),
   ],
   [
-    "덱 슬라이드 10장",
-    deckSlideCount === 10,
-    `실제 ${deckSlideCount}장, 기대 10장`,
+    "덱 슬라이드 11장",
+    deckSlideCount === 11,
+    `실제 ${deckSlideCount}장, 기대 11장`,
   ],
   [
     "덱에 특허1 번호 노출",
@@ -133,7 +133,7 @@ const checks = [
   ],
   // 덱에는 이동 버튼이 있지만, 인쇄를 유도하는 버튼이나 안내 문구는 두지 않는다.
   ["덱에 인쇄 안내 없음", !deck.includes("인쇄")],
-  // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 문서 페이지에 인쇄 버튼을 두지 않는다.
+  // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다. 문서 페이지에 인쇄 버튼을 두지 않는다.
   // all은 문서 네 쪽만 합친 것이다. 덱의 이동 버튼은 여기 걸리지 않는다.
   ["문서 페이지에 인쇄 버튼 없음", !/<button/i.test(all)],
   ["연락 CTA 없음", !pageOnly.includes("함께 일할 이야기가 있다면")],

@@ -1,7 +1,7 @@
 // 발표 덱의 슬라이드 내용. 렌더링은 src/components/deck/ 이 맡는다.
 // 슬라이드당 발표 시간은 여기 두지 않는다. 시간의 단일 소스는 docs/deck-script.md다.
 //
-// 화면에는 제목과 용어만 둔다. 구체적인 성능 수치(정확도·오차·소요 시간)는
+// 화면에는 제목과 용어만 둔다. 구체적인 성능 수치(정확도·오차·소요 시간)와 회귀식은
 // 슬라이드에 적지 않고 발표자가 말로 전한다. 수치가 필요하면 docs/deck-script.md를 본다.
 // 특허 서지(출원·등록번호, 청구항 수, 발명자)는 성능이 아니라 문서의 신원이므로 남긴다.
 
@@ -12,7 +12,8 @@ export type Block =
 
 export type FigureKey =
   | "rgb-gap"
-  | "theme1"
+  | "squeezeface"
+  | "cloudnet"
   | "garment"
   | "body"
   | "patent1-flow"
@@ -30,7 +31,6 @@ export interface Slide {
   lead?: string;
   blocks: Block[];
   figure?: FigureKey;
-  note?: string;
 }
 
 export const chapters: { key: ChapterKey; label: string }[] = [
@@ -72,33 +72,43 @@ export const slides: Slide[] = [
       },
     ],
     figure: "rgb-gap",
-    note: "두 결핍 모두 표면까지의 거리를 모른다",
   },
   {
     id: "s03",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme I",
-    title: "Theme I · 3D 생체인식",
+    title: "SqueezeFace · 다중 모달 얼굴 인식",
     blocks: [
       {
         kind: "points",
         items: [
-          {
-            lead: "SqueezeFace",
-            text: "RGB · 깊이맵 · 포인트 클라우드 7채널 · ResNet-34 · SAC 주의 블록 · 마진 손실",
-          },
-          {
-            lead: "CloudNet",
-            text: "LDFAS 데이터셋 · 조명 3구간 · RGB망과 LiDAR망 이원 · 초기+후기 하이브리드 융합",
-          },
+          { lead: "입력", text: "RGB · 깊이맵 · 포인트 클라우드를 7채널로" },
+          { lead: "구조", text: "ResNet-34 · SAC 공간적응 합성곱 주의 블록" },
+          { lead: "손실", text: "마진 손실로 클래스 간 분리도 확대" },
         ],
       },
     ],
-    figure: "theme1",
-    note: "LiDAR 특징은 RGB처럼 생기지 않는다",
+    figure: "squeezeface",
   },
   {
     id: "s04",
+    chapter: "dissertation",
+    eyebrow: "박사논문 · Theme I",
+    title: "CloudNet · 조명에 강한 위조 탐지",
+    blocks: [
+      {
+        kind: "points",
+        items: [
+          { lead: "데이터셋", text: "LDFAS · 조명 3구간을 직접 구축" },
+          { lead: "구조", text: "RGB망과 LiDAR망을 따로 학습" },
+          { lead: "융합", text: "초기 + 후기 하이브리드" },
+        ],
+      },
+    ],
+    figure: "cloudnet",
+  },
+  {
+    id: "s05",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme II",
     title: "옷 한 장의 치수를 자동으로",
@@ -118,10 +128,9 @@ export const slides: Slide[] = [
       },
     ],
     figure: "garment",
-    note: "배경을 통제하지 않아도 견딘다",
   },
   {
-    id: "s05",
+    id: "s06",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme II",
     title: "사람 몸은 왜 더 어려운가",
@@ -131,7 +140,7 @@ export const slides: Slide[] = [
         items: [
           {
             lead: "표면이 굽어 있다",
-            text: "정면과 측면 반둘레를 회귀로 합성 · Ct = β(Cf + Cs) + ε",
+            text: "정면과 측면 반둘레를 회귀로 합성",
           },
           {
             lead: "키포인트가 옷에 가려 있다",
@@ -145,10 +154,9 @@ export const slides: Slide[] = [
       },
     ],
     figure: "body",
-    note: "↓ 이 방법이 특허1의 청구항이 된다",
   },
   {
-    id: "s06",
+    id: "s07",
     chapter: "dissertation",
     eyebrow: "박사논문 · 종합",
     title: "네 연구를 관통하는 하나",
@@ -164,10 +172,9 @@ export const slides: Slide[] = [
         ],
       },
     ],
-    note: "모달리티를 아는 융합. 이 패턴이 특허 2건으로 이어졌다",
   },
   {
-    id: "s07",
+    id: "s08",
     chapter: "patent-1",
     eyebrow: "특허 · 출원",
     title: "2D 및 3D 데이터 융합을 통한 신체 둘레 측정 자동화 방법 및 장치",
@@ -195,7 +202,7 @@ export const slides: Slide[] = [
     figure: "patent1-flow",
   },
   {
-    id: "s08",
+    id: "s09",
     chapter: "patent-1",
     eyebrow: "특허 · 출원",
     title: "이 특허가 실제로 지키는 것",
@@ -219,10 +226,9 @@ export const slides: Slide[] = [
       },
     ],
     figure: "patent1-core",
-    note: "참조물도, 3D 스캐너도, 메시 복원도 없이 스마트폰 한 대",
   },
   {
-    id: "s09",
+    id: "s10",
     chapter: "patent-2",
     eyebrow: "특허 · 출원 및 등록",
     title: "영상 데이터 융합을 통한 얼굴의 부위별 주름 검출 장치 및 방법",
@@ -251,7 +257,7 @@ export const slides: Slide[] = [
     figure: "patent2-flow",
   },
   {
-    id: "s10",
+    id: "s11",
     chapter: "patent-2",
     eyebrow: "특허 · 출원 및 등록",
     title: "두 단의 랜드마크, 그리고 깊이",
@@ -264,17 +270,16 @@ export const slides: Slide[] = [
             text: "1차 눈 · 코 · 입 → 2차 부위별 주름 영역",
           },
           {
-            lead: "주름 영역 결정",
-            text: "2D 특징점과 3D 깊이 정합 → 포인트 클라우드 · 길이 · 깊이 · 밀도",
+            lead: "영역과 상태 결정",
+            text: "2D 특징점 + 3D 깊이 정합 → 포인트 클라우드 → U-Net → 형상과 구간별 깊이",
           },
           {
-            lead: "주름 상태 결정",
-            text: "U-Net 주름분석모델 → 주름 형상과 구간별 깊이",
+            lead: "응용 (7항)",
+            text: "팔자주름으로 신체적 나이 판정 · K-뷰티 모바일 피부분석 AI 과제(2025)",
           },
         ],
       },
     ],
     figure: "patent2-core",
-    note: "응용 (7항) · 팔자주름으로 신체적 나이 판정. K-뷰티 모바일 피부분석 AI 과제(2025)로 이어졌다",
   },
 ];

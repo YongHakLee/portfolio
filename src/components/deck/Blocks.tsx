@@ -12,7 +12,7 @@ export default function Blocks({ blocks }: { blocks: Block[] }) {
                 {block.items.map((it) => (
                   <li key={it.lead}>
                     <strong>{it.lead}</strong>
-                    <span> — {it.text}</span>
+                    <span>{it.text}</span>
                   </li>
                 ))}
               </ul>

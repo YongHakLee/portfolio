@@ -32,41 +32,72 @@ const RgbGap = () => (
   </svg>
 );
 
-const Theme1 = () => (
-  <svg viewBox="0 0 460 116" role="img" aria-labelledby="fig-theme1">
-    <title id="fig-theme1">SqueezeFace의 7채널 입력과 CloudNet의 하이브리드 융합</title>
+const SqueezeFace = () => (
+  <svg viewBox="0 0 460 130" role="img" aria-labelledby="fig-squeezeface">
+    <title id="fig-squeezeface">
+      RGB와 깊이맵과 포인트 클라우드를 7채널로 합쳐 SAC 주의 블록이 있는 ResNet-34에 넣는다
+    </title>
 
-    <text x="0" y="10">SqueezeFace</text>
-    <rect x="0" y="20" width="58" height="16" />
-    <text x="6" y="32">RGB 3ch</text>
-    <rect x="0" y="42" width="58" height="16" />
-    <text x="6" y="54">Depth 1ch</text>
-    <rect x="0" y="64" width="58" height="16" />
-    <text x="6" y="76">Cloud 3ch</text>
-    <line x1="58" y1="50" x2="80" y2="50" />
-    <rect x="80" y="32" width="62" height="36" />
-    <text x="86" y="54">SAC + R34</text>
-    <line x1="142" y1="50" x2="162" y2="50" />
-    <text className="fig-em" x="162" y="54">얼굴 식별</text>
+    <rect x="0" y="16" width="74" height="22" />
+    <text x="8" y="31">RGB 3ch</text>
+    <rect x="0" y="46" width="74" height="22" />
+    <text x="8" y="61">Depth 1ch</text>
+    <rect x="0" y="76" width="74" height="22" />
+    <text x="8" y="91">Cloud 3ch</text>
 
-    <line x1="234" y1="10" x2="234" y2="100" />
+    <path d="M80 20 h8 v72 h-8" />
+    <text className="fig-em" x="94" y="53">7채널 입력</text>
 
-    <text x="252" y="10">CloudNet</text>
-    <rect x="252" y="22" width="56" height="20" />
-    <text x="258" y="36">RGB 망</text>
-    <rect x="252" y="56" width="56" height="20" />
-    <text x="258" y="70">LiDAR 망</text>
-    <path d="M308 32 h14 v34 h-14" />
-    <path d="M308 66 h14" />
-    <rect x="322" y="39" width="40" height="20" />
-    <text x="328" y="53">융합</text>
+    <line x1="150" y1="57" x2="172" y2="57" />
+
+    <rect x="172" y="26" width="120" height="62" />
+    <text x="182" y="46">ResNet-34</text>
+    <rect className="fig-accent" x="182" y="56" width="100" height="22" />
+    <text className="fig-em" x="190" y="71">SAC 주의 블록</text>
+
+    <line x1="292" y1="57" x2="314" y2="57" />
+
+    <rect x="314" y="40" width="80" height="34" />
+    <text x="324" y="61">임베딩</text>
+    <line x1="394" y1="57" x2="414" y2="57" />
+    <text className="fig-em" x="414" y="61">식별</text>
+
+    <text x="172" y="114">마진 손실이 클래스 사이를 벌린다</text>
+  </svg>
+);
+
+const CloudNet = () => (
+  <svg viewBox="0 0 460 130" role="img" aria-labelledby="fig-cloudnet">
+    <title id="fig-cloudnet">
+      RGB망과 LiDAR망을 따로 학습해 초기와 후기 하이브리드 융합으로 합친다
+    </title>
+
+    <rect x="0" y="20" width="86" height="26" />
+    <text x="10" y="37">RGB 망</text>
+    <rect x="0" y="64" width="86" height="26" />
+    <text x="10" y="81">LiDAR 망</text>
+
+    <path d="M86 33 h22 v22 h18" />
+    <path d="M86 77 h22 v-22 h18" />
+
+    <rect x="126" y="40" width="90" height="30" />
+    <text x="134" y="54">초기 + 후기</text>
+    <text x="134" y="66">하이브리드 융합</text>
+
+    <line x1="216" y1="55" x2="238" y2="55" />
+    <rect x="238" y="40" width="72" height="30" />
+    <text x="248" y="59">진위 판정</text>
+
+    <text x="0" y="114">LDFAS 데이터셋 · 조명 3구간</text>
+
+    <line x1="324" y1="14" x2="324" y2="104" />
 
     {/* 막대 길이 비율만 보여주고 값은 말로 전한다 */}
-    <text x="376" y="30">조명이 바뀔 때 오차</text>
-    <rect className="fig-fill" x="376" y="38" width="72" height="9" />
-    <text x="376" y="58">RGB 단독</text>
-    <rect className="fig-fill" x="376" y="66" width="24" height="9" />
-    <text className="fig-em" x="376" y="86">CloudNet</text>
+    <text x="342" y="28">조명이 바뀔 때 오차</text>
+    <rect className="fig-fill" x="342" y="38" width="102" height="10" />
+    <text x="342" y="62">RGB 단독</text>
+    <rect className="fig-fill" x="342" y="72" width="34" height="10" />
+    <text className="fig-em" x="342" y="96">CloudNet</text>
   </svg>
 );
 
@@ -101,7 +132,7 @@ const Body = () => (
     <path className="fig-accent" d="M102 22 q16 26 0 52" />
     <text x="52" y="52">+</text>
     <line x1="0" y1="86" x2="136" y2="86" />
-    <text className="fig-em" x="0" y="104">Ct = β(Cf + Cs) + ε</text>
+    <text className="fig-em" x="0" y="104">반둘레 합성</text>
 
     <line x1="176" y1="10" x2="176" y2="100" />
 
@@ -128,7 +159,7 @@ const Patent1Flow = () => (
   <svg viewBox="0 0 460 116" role="img" aria-labelledby="fig-p1flow">
     <title id="fig-p1flow">청구항 1의 네 단계와 장치의 네 구성부</title>
 
-    <text x="0" y="14">청구항 1 — 방법 / 청구항 10 — 장치</text>
+    <text x="0" y="14">청구항 1 방법 · 청구항 10 장치</text>
     {P1_STEPS.map((s, i) => (
       <g key={s.no}>
         <rect x={i * 116} y="30" width="96" height="44" rx="3" />
@@ -200,7 +231,7 @@ const Patent2Core = () => (
   <svg viewBox="0 0 460 124" role="img" aria-labelledby="fig-p2core">
     <title id="fig-p2core">1차·2차 랜드마크와 팔자주름의 구간별 깊이</title>
 
-    <text x="0" y="10">1차 — 눈 · 코 · 입</text>
+    <text x="0" y="10">1차 랜드마크 · 눈 코 입</text>
     <path d="M60 18 q34 0 34 38 0 38 -34 52 -34 -14 -34 -52 0 -38 34 -38 z" />
     <circle cx="46" cy="46" r="3" />
     <circle cx="74" cy="46" r="3" />
@@ -208,7 +239,7 @@ const Patent2Core = () => (
     <path d="M46 80 q14 8 28 0" />
     <path className="fig-accent" d="M44 60 q-6 16 2 26" />
     <path className="fig-accent" d="M76 60 q6 16 -2 26" />
-    <text className="fig-em" x="0" y="120">2차 — 부위별 주름 영역 (팔자주름)</text>
+    <text className="fig-em" x="0" y="120">2차 랜드마크 · 부위별 주름 영역</text>
 
     <line x1="180" y1="10" x2="180" y2="104" />
 
@@ -226,7 +257,8 @@ const Patent2Core = () => (
 
 const FIGURES: Record<FigureKey, FC> = {
   "rgb-gap": RgbGap,
-  theme1: Theme1,
+  squeezeface: SqueezeFace,
+  cloudnet: CloudNet,
   garment: Garment,
   body: Body,
   "patent1-flow": Patent1Flow,

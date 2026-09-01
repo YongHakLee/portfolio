@@ -32,7 +32,6 @@ export default function Slide({
         {slide.lead && <p className="deck-lead">{slide.lead}</p>}
         <Blocks blocks={slide.blocks} />
         {slide.figure && <Figure name={slide.figure} />}
-        {slide.note && <p className="deck-note">{slide.note}</p>}
       </div>
     </section>
   );
