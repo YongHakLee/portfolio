@@ -33,7 +33,7 @@ const pageOnly = stripScripts(all);
 const resumeOnly = stripScripts(resume);
 
 // 2026-08 정리에서 지운 것들. 산출물에 다시 나타나면 정리가 되감긴 것이다.
-// (저장소 옛 이름 · 덱 라우트 · 시연 앱 · 덱에서만 쓰던 가상 상호명)
+// (저장소 옛 이름 · 옛 AX 덱 라우트 · 시연 앱 · 덱에서만 쓰던 가상 상호명)
 const FORBIDDEN = [
   "teamsparta",
   "스파르타",
@@ -131,8 +131,11 @@ const checks = [
     deckChapters.length === 3,
     `실제 ${deckChapters.join(", ") || "없음"}`,
   ],
-  // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
-  ["인쇄 버튼 없음", !/<button/i.test(all)],
+  // 덱에는 이동 버튼이 있지만, 인쇄를 유도하는 버튼이나 안내 문구는 두지 않는다.
+  ["덱에 인쇄 안내 없음", !deck.includes("인쇄")],
+  // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 문서 페이지에 인쇄 버튼을 두지 않는다.
+  // all은 문서 네 쪽만 합친 것이다. 덱의 이동 버튼은 여기 걸리지 않는다.
+  ["문서 페이지에 인쇄 버튼 없음", !/<button/i.test(all)],
   ["연락 CTA 없음", !pageOnly.includes("함께 일할 이야기가 있다면")],
   // 저자 기여를 과장하지 않는 표기.
   // HTML에서 &는 &amp;로 이스케이프되므로 정규식으로 양쪽을 다 받는다.
