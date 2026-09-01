@@ -158,6 +158,45 @@
   font-weight: 700;
 }
 
+.deck-fig {
+  width: 100%;
+}
+
+.deck-fig svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.deck-fig text {
+  fill: currentColor;
+  font-size: 11px;
+}
+
+.deck-fig .fig-em {
+  fill: var(--accent);
+  font-weight: 700;
+}
+
+.deck-fig rect,
+.deck-fig line,
+.deck-fig path,
+.deck-fig circle,
+.deck-fig polyline {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+}
+
+.deck-fig .fig-accent {
+  stroke: var(--accent);
+}
+
+.deck-fig .fig-fill {
+  fill: var(--hairline);
+  stroke: none;
+}
+
 .deck-note {
   margin-top: auto;
   border-top: 1px solid var(--hairline);

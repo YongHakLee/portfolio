@@ -78,6 +78,7 @@ export const slides: Slide[] = [
         ],
       },
     ],
+    figure: "rgb-gap",
     note: "두 결핍 모두 표면까지의 거리를 몰라서 생긴다 — 모바일 LiDAR가 그 값을 준다",
   },
 ];

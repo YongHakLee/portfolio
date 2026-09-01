@@ -1,5 +1,6 @@
 import type { Slide as SlideData } from "@/data/deck";
 import Blocks from "./Blocks";
+import { Figure } from "./figures";
 
 export default function Slide({
   slide,
@@ -31,6 +32,7 @@ export default function Slide({
         <h2 className="deck-title">{slide.title}</h2>
         {slide.lead && <p className="deck-lead">{slide.lead}</p>}
         <Blocks blocks={slide.blocks} />
+        {slide.figure && <Figure name={slide.figure} />}
         {slide.note && <p className="deck-note">{slide.note}</p>}
       </div>
     </section>
