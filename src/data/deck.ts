@@ -268,7 +268,7 @@ export const slides: Slide[] = [
     id: "s11",
     chapter: "patent-2",
     eyebrow: "특허 · 출원 및 등록",
-    title: "두 단의 랜드마크 특정, 그리고 깊이",
+    title: "이 특허의 권리범위",
     blocks: [
       {
         kind: "points",
