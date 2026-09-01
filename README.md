@@ -26,5 +26,3 @@ npm run dev    # http://localhost:3000/portfolio
 
 `next.config.ts`의 `basePath`가 `/portfolio`라 개발 서버에서도 경로 앞에 `/portfolio`가 붙습니다.
 `basePath`는 `src/lib/paths.ts`의 `BASE_PATH` 한 곳에서 관리합니다.
-
-관리 절차(이미지 가공, 배포, PDF 저장)는 [운영 메모](docs/운영메모.md)에 있습니다.
