@@ -1,9 +1,10 @@
 import type { FC } from "react";
 import type { FigureKey } from "@/data/deck";
 
-/* 도식은 인라인 SVG로만 그린다. 색은 currentColor와 var(--accent)만 쓰므로
-   화면과 인쇄에서 같은 색이 나오고 사이트 토큰과 따로 놀지 않는다.
-   선·글자 스타일은 deck.css의 .deck-fig 블록에 모여 있다. */
+/* 도식은 인라인 SVG로만 그린다. 색은 currentColor, var(--accent), var(--hairline)
+   (채우기로, .fig-fill 경유)만 쓰는 사이트 토큰이라 화면과 인쇄에서 같은 색이 나온다.
+   공통 선·글자 스타일은 deck.css의 .deck-fig 블록에 모여 있고, 개별적으로 필요한
+   경우에 한해 인라인 SVG 속성을 쓴다. */
 
 const RgbGap = () => (
   <svg viewBox="0 0 460 132" role="img" aria-labelledby="fig-rgbgap">

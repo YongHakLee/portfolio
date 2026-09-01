@@ -83,8 +83,9 @@ export default function DeckViewer() {
         </button>
 
         {/* 구간 폭은 슬라이드 개수 비율이다 (시간 비율이 아니다).
-            아직 슬라이드가 없는 챕터(특허1·특허2)는 chapterStart가 -1을 돌려주므로
-            버튼을 비활성화해 setIndex(-1)로 이어지지 않게 막는다. */}
+            chapters와 slides는 서로 다른 export라 어긋날 수 있다. 슬라이드가 없는
+            챕터가 생기면 chapterStart가 -1을 돌려주므로, 버튼을 비활성화해
+            setIndex(-1)로 이어지지 않게 막는 방어 코드다. */}
         <ul className="deck-bar">
           {chapters.map((c) => {
             const start = chapterStart(c.key);

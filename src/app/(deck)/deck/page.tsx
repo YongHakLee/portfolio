@@ -13,6 +13,7 @@ export default function DeckPage() {
       <Link href="/" className="deck-back no-print">
         ← 사이트로
       </Link>
+      <h1 className="sr-only">이용학 — 박사논문과 특허 발표</h1>
       <DeckViewer />
     </>
   );
