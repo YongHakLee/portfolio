@@ -134,7 +134,7 @@ const CloudNet = () => (
     </text>
 
     <text x="0" y="114">
-      LDFAS 데이터셋 · 조명 3구간
+      LDFAS 데이터셋 · 조건 3구간
     </text>
 
     <line x1="324" y1="14" x2="324" y2="104" />
