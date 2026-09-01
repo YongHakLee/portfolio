@@ -51,8 +51,8 @@ export const slides: Slide[] = [
       {
         kind: "points",
         items: [
-          { lead: "관통 주장", text: "모달리티를 아는 융합" },
-          { lead: "구성", text: "2개 테마 · 4편 연구 · 지도교수 김성환" },
+          { lead: "핵심 아이디어", text: "데이터 중심의 멀티 모달 융합" },
+          { lead: "구성", text: "2개 주제 · 4편 연구 · 지도교수 김성환" },
         ],
       },
     ],
@@ -61,13 +61,19 @@ export const slides: Slide[] = [
     id: "s02",
     chapter: "dissertation",
     eyebrow: "박사논문 · 문제",
-    title: "RGB 카메라가 못 하는 두 가지",
+    title: "2D RGB 카메라의 한계",
     blocks: [
       {
         kind: "points",
         items: [
-          { lead: "누구인지 · 진짜인지", text: "사진과 사람이 색으로는 같다 · 조명에 취약" },
-          { lead: "얼마나 큰지", text: "픽셀 거리 ≠ 실제 거리 · 기준자 없이는 치수가 없다" },
+          {
+            lead: "누구인지 또는 진짜인지 (얼굴 인식)",
+            text: "모방 공격에 취약 · 조명 변화에 취약",
+          },
+          {
+            lead: "얼마나 큰지 (치수 측정)",
+            text: "픽셀 거리 ≠ 실제 거리 · 기준 정보가 없으면 치수 측정 불가",
+          },
         ],
       },
     ],
@@ -77,14 +83,17 @@ export const slides: Slide[] = [
     id: "s03",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme I",
-    title: "SqueezeFace · 다중 모달 얼굴 인식",
+    title: "SqueezeFace · 얼굴 인식",
     blocks: [
       {
         kind: "points",
         items: [
           { lead: "입력", text: "RGB · 깊이맵 · 포인트 클라우드를 7채널로" },
-          { lead: "구조", text: "ResNet-34 · SAC 공간적응 합성곱 주의 블록" },
-          { lead: "손실", text: "마진 손실로 클래스 간 분리도 확대" },
+          { lead: "구조", text: "ResNet-34 · SAC Block" },
+          {
+            lead: "손실",
+            text: "Additive Large Margin Loss로 클래스 간 분리도 확대",
+          },
         ],
       },
     ],
@@ -94,13 +103,13 @@ export const slides: Slide[] = [
     id: "s04",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme I",
-    title: "CloudNet · 조명에 강한 위조 탐지",
+    title: "CloudNet · 진위 판별",
     blocks: [
       {
         kind: "points",
         items: [
-          { lead: "데이터셋", text: "LDFAS · 조명 3구간을 직접 구축" },
-          { lead: "구조", text: "RGB망과 LiDAR망을 따로 학습" },
+          { lead: "데이터셋", text: "LDFAS: 조건 3구간을 직접 구축" },
+          { lead: "구조", text: "RGB Layer와 LiDAR Layer를 따로 학습" },
           { lead: "융합", text: "초기 + 후기 하이브리드" },
         ],
       },
@@ -111,18 +120,18 @@ export const slides: Slide[] = [
     id: "s05",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme II",
-    title: "옷 한 장의 치수를 자동으로",
+    title: "옷 한 장의 치수를 자동으로 측정",
     blocks: [
       {
         kind: "points",
         items: [
           {
             lead: "치수점 검출",
-            text: "HRNet-W48 · DeepFashion2 파인튜닝 · 좌우 대칭 인식 증강",
+            text: "HRNet-W48 · DeepFashion2 Dataset Fine-tuning",
           },
           {
             lead: "실거리 계산",
-            text: "픽셀 격자가 아니라 동기 촬영된 포인트 클라우드 위에서",
+            text: "치수점까지의 거리 + 끼인각 (코사인법칙 적용)",
           },
         ],
       },
@@ -133,7 +142,7 @@ export const slides: Slide[] = [
     id: "s06",
     chapter: "dissertation",
     eyebrow: "박사논문 · Theme II",
-    title: "사람 몸은 왜 더 어려운가",
+    title: "인체 치수(둘레) 측정",
     blocks: [
       {
         kind: "points",
@@ -144,11 +153,11 @@ export const slides: Slide[] = [
           },
           {
             lead: "키포인트가 옷에 가려 있다",
-            text: "가슴 · 허리 · 엉덩이 · 둔부 · 대퇴골과 수동 라벨 · HRNet 전이학습",
+            text: "가슴 · 허리 · 엉덩이 · 둔부 · 대퇴골 등",
           },
           {
             lead: "점이 몸이 아니라 배경에 찍힌다",
-            text: "Canny 에지 기반 깊이맵 보정",
+            text: "Canny Edge Detection 기반 치수점 위치 보정",
           },
         ],
       },
@@ -159,16 +168,16 @@ export const slides: Slide[] = [
     id: "s07",
     chapter: "dissertation",
     eyebrow: "박사논문 · 종합",
-    title: "네 연구를 관통하는 하나",
+    title: "정리",
     blocks: [
       {
         kind: "table",
-        head: ["연구", "RGB의 한계", "LiDAR가 준 것", "모델 쪽 설계"],
+        head: ["연구", "RGB의 한계", "LiDAR 활용", "모델 쪽 설계"],
         rows: [
-          ["SqueezeFace", "분리도 부족", "표면 굴곡", "SAC 주의 블록"],
+          ["SqueezeFace", "분리도 부족", "표면 굴곡", "SAC Block"],
           ["CloudNet", "조명에 취약", "조명 불변 깊이", "하이브리드 융합"],
-          ["의류 계측", "실거리 없음", "절대 거리", "대칭 인식 증강"],
-          ["인체 계측", "실거리 · 가림", "절대 거리", "깊이맵 보정 + 회귀"],
+          ["의류 계측", "실거리 없음", "절대 거리", "Data Augmentation"],
+          ["인체 계측", "실거리 · 가림", "절대 거리", "치수점 위치 보정"],
         ],
       },
     ],
@@ -205,7 +214,7 @@ export const slides: Slide[] = [
     id: "s09",
     chapter: "patent-1",
     eyebrow: "특허 · 출원",
-    title: "이 특허가 실제로 지키는 것",
+    title: "이 특허의 권리범위",
     blocks: [
       {
         kind: "points",
@@ -232,7 +241,6 @@ export const slides: Slide[] = [
     chapter: "patent-2",
     eyebrow: "특허 · 출원 및 등록",
     title: "영상 데이터 융합을 통한 얼굴의 부위별 주름 검출 장치 및 방법",
-    lead: "주름은 색이 아니라 골이다",
     blocks: [
       {
         kind: "bib",
@@ -260,7 +268,7 @@ export const slides: Slide[] = [
     id: "s11",
     chapter: "patent-2",
     eyebrow: "특허 · 출원 및 등록",
-    title: "두 단의 랜드마크, 그리고 깊이",
+    title: "두 단의 랜드마크 특정, 그리고 깊이",
     blocks: [
       {
         kind: "points",
@@ -275,7 +283,7 @@ export const slides: Slide[] = [
           },
           {
             lead: "응용 (7항)",
-            text: "팔자주름으로 신체적 나이 판정 · K-뷰티 모바일 피부분석 AI 과제(2025)",
+            text: "팔자주름으로 신체적 나이 추정",
           },
         ],
       },
