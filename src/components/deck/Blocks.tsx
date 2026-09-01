@@ -17,17 +17,6 @@ export default function Blocks({ blocks }: { blocks: Block[] }) {
                 ))}
               </ul>
             );
-          case "metrics":
-            return (
-              <ul key={i} className="deck-metrics">
-                {block.items.map((it) => (
-                  <li key={it.label}>
-                    <span className="deck-metric-value">{it.value}</span>
-                    <span className="deck-metric-label">{it.label}</span>
-                  </li>
-                ))}
-              </ul>
-            );
           case "bib":
             return (
               <dl key={i} className="deck-bib">

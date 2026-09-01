@@ -47,8 +47,7 @@ const Theme1 = () => (
     <rect x="80" y="32" width="62" height="36" />
     <text x="86" y="54">SAC + R34</text>
     <line x1="142" y1="50" x2="162" y2="50" />
-    <text className="fig-em" x="162" y="46">99.88%</text>
-    <text x="162" y="62">F1 0.9345</text>
+    <text className="fig-em" x="162" y="54">얼굴 식별</text>
 
     <line x1="234" y1="10" x2="234" y2="100" />
 
@@ -62,11 +61,12 @@ const Theme1 = () => (
     <rect x="322" y="39" width="40" height="20" />
     <text x="328" y="53">융합</text>
 
-    <text x="376" y="30">ACER 열화</text>
+    {/* 막대 길이 비율만 보여주고 값은 말로 전한다 */}
+    <text x="376" y="30">조명이 바뀔 때 오차</text>
     <rect className="fig-fill" x="376" y="38" width="72" height="9" />
-    <text x="376" y="58">RGB 단독 +0.40 · +0.41</text>
+    <text x="376" y="58">RGB 단독</text>
     <rect className="fig-fill" x="376" y="66" width="24" height="9" />
-    <text className="fig-em" x="376" y="86">CloudNet +0.13 · +0.15</text>
+    <text className="fig-em" x="376" y="86">CloudNet</text>
   </svg>
 );
 
@@ -113,8 +113,7 @@ const Body = () => (
     <line className="fig-accent" x1="212" y1="54" x2="230" y2="54" />
     <circle cx="236" cy="54" r="4" />
 
-    <text className="fig-em" x="332" y="44">{"허리 · 엉덩이 < 4%"}</text>
-    <text x="332" y="64">1회 0.7초 · 메시 복원 없이</text>
+    <text x="332" y="54">메시 복원 없이</text>
   </svg>
 );
 
