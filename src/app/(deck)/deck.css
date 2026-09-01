@@ -269,3 +269,38 @@
   color: var(--hairline);
   cursor: default;
 }
+
+/* PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)뿐이다 — 페이지 안에 인쇄 버튼을 두지 않는다.
+   화면에서는 현재 장만 보이지만, 인쇄에서는 열 장을 모두 편다. */
+@media print {
+  @page {
+    size: A4 landscape;
+    margin: 0;
+  }
+
+  .deck-root {
+    display: block;
+    min-height: 0;
+  }
+
+  .deck-stage {
+    display: block;
+    padding: 0;
+  }
+
+  .deck-slide,
+  .deck-slide.is-active {
+    display: grid;
+    width: 100%;
+    border: 0;
+    break-after: page;
+  }
+
+  .deck-slide:last-child {
+    break-after: auto;
+  }
+
+  .deck-chrome {
+    display: none !important;
+  }
+}

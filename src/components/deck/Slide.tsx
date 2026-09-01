@@ -18,7 +18,6 @@ export default function Slide({
       id={slide.id}
       data-slide={no}
       data-chapter={slide.chapter}
-      aria-hidden={!active}
       className={`deck-slide${active ? " is-active" : ""}`}
     >
       <header className="deck-head">
