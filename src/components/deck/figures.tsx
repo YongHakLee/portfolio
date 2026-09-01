@@ -117,13 +117,70 @@ const Body = () => (
   </svg>
 );
 
+const P1_STEPS = [
+  { no: "310", step: "①", label: "2D · 3D 수집" },
+  { no: "330", step: "②", label: "핵심점 한 쌍" },
+  { no: "350", step: "③", label: "기준 포인트" },
+  { no: "370", step: "④", label: "둘레 측정" },
+];
+
+const Patent1Flow = () => (
+  <svg viewBox="0 0 460 116" role="img" aria-labelledby="fig-p1flow">
+    <title id="fig-p1flow">청구항 1의 네 단계와 장치의 네 구성부</title>
+
+    <text x="0" y="14">청구항 1 — 방법 / 청구항 10 — 장치</text>
+    {P1_STEPS.map((s, i) => (
+      <g key={s.no}>
+        <rect x={i * 116} y="30" width="96" height="44" rx="3" />
+        <text x={i * 116 + 10} y="50">
+          {s.step} {s.label}
+        </text>
+        <text className="fig-em" x={i * 116 + 10} y="68">
+          {s.no}
+        </text>
+        {i < P1_STEPS.length - 1 && (
+          <line x1={i * 116 + 96} y1="52" x2={i * 116 + 116} y2="52" />
+        )}
+      </g>
+    ))}
+    <text x="0" y="98">
+      데이터 수집부 · 핵심점 검출부 · 기준점 식별부 · 신체 둘레 측정부
+    </text>
+  </svg>
+);
+
+const Patent1Core = () => (
+  <svg viewBox="0 0 460 116" role="img" aria-labelledby="fig-p1core">
+    <title id="fig-p1core">배경면 기준 중간 지점 보정과 전·후방 둘레 합산</title>
+
+    <text x="0" y="10">기준 포인트 보정 (6 · 7항)</text>
+    <line x1="0" y1="22" x2="0" y2="94" />
+    <text x="6" y="92">배경면</text>
+    <path d="M96 24 q34 32 0 64" />
+    <text x="102" y="24">몸 표면</text>
+    <line className="fig-accent" x1="0" y1="56" x2="96" y2="56" strokeDasharray="3 3" />
+    <circle className="fig-accent" cx="48" cy="56" r="4" />
+    <text className="fig-em" x="22" y="74">중간 지점</text>
+
+    <line x1="212" y1="10" x2="212" y2="100" />
+
+    <text x="238" y="10">전 · 후방 합산 (8 · 9항)</text>
+    <path className="fig-accent" d="M282 24 q-40 32 0 64" />
+    <path d="M282 24 q40 32 0 64" />
+    <text x="228" y="60">전방</text>
+    <text x="298" y="60">후방</text>
+    <text className="fig-em" x="342" y="52">Σ ‖ pᵢ₊₁ − pᵢ ‖</text>
+    <text x="342" y="72">인접 점 간 유클리드 거리</text>
+  </svg>
+);
+
 const FIGURES: Record<FigureKey, FC> = {
   "rgb-gap": RgbGap,
   theme1: Theme1,
   garment: Garment,
   body: Body,
-  "patent1-flow": RgbGap,
-  "patent1-core": RgbGap,
+  "patent1-flow": Patent1Flow,
+  "patent1-core": Patent1Core,
   "patent2-flow": RgbGap,
   "patent2-core": RgbGap,
 };

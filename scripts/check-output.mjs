@@ -109,9 +109,13 @@ const checks = [
       !deck.includes('href="/portfolio/cv"'),
   ],
   [
-    "덱 슬라이드 6장",
-    deckSlideCount === 6,
-    `실제 ${deckSlideCount}장, 기대 6장`,
+    "덱 슬라이드 8장",
+    deckSlideCount === 8,
+    `실제 ${deckSlideCount}장, 기대 8장`,
+  ],
+  [
+    "덱에 특허1 번호 노출",
+    deck.includes("10-2024-0077839") && deck.includes("10-2025-0177277"),
   ],
   // PDF 저장은 브라우저 인쇄(Ctrl/⌘ + P)로만 한다 — 페이지 안에 인쇄 버튼을 두지 않는다.
   ["인쇄 버튼 없음", !/<button/i.test(all)],
